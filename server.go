@@ -75,11 +75,26 @@ func GetFlightByIDHandler(c *gin.Context) {
 	c.JSON(http.StatusBadRequest, gin.H{"error": "flight ID not found "})
 }
 
+func CreateFlightHandler(c *gin.Context) {
+	var f Flight
+	err := c.ShouldBindJSON(&f)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	f.ID = len(flights) + 1
+
+	flights = append(flights, f)
+
+	c.JSON(http.StatusCreated, f)
+}
+
 func main() {
 	r := gin.Default()
 
 	r.GET("/ping", handler)
 	r.GET("/flights/:id", GetFlightByIDHandler)
-	// POST /flights => CreateFlightHandler playload { "number": 123, "airlineCode": "AA", "destination": "DMK", "arrival": "KKC" }
+	r.POST("/flights", CreateFlightHandler)
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
