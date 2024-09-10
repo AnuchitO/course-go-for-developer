@@ -18,7 +18,8 @@ type flight struct {
 	destination string
 }
 
-func (f Flight) getFlightNumber() string {
+// reciever
+func (f flight) getFlightNumber() string {
 	code := fmt.Sprintf("%s %d", f.airlineCode, f.number)
 	return code
 }
