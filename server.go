@@ -80,5 +80,6 @@ func main() {
 
 	r.GET("/ping", handler)
 	r.GET("/flights/:id", GetFlightByIDHandler)
+	// POST /flights => CreateFlightHandler playload { "number": 123, "airlineCode": "AA", "destination": "DMK", "arrival": "KKC" }
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
