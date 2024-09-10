@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -24,10 +26,31 @@ func handler(c *gin.Context) {
 	})
 }
 
+type Flight struct {
+	ID          int
+	Number      int
+	AirlineCode string
+	Destination string
+	Arrival     string
+}
+
+func GetFlightByIDHandler(c *gin.Context) {
+	id := c.Param("id")
+	fmt.Println(id)
+	f := Flight{
+		ID:          1,
+		Number:      3250,
+		AirlineCode: "FD",
+		Destination: "DMK",
+		Arrival:     "KKC",
+	}
+	c.JSON(200, f)
+}
+
 func main() {
 	r := gin.Default()
 
 	r.GET("/ping", handler)
-	// GET /flights/1 ->  GetFlightByIDHandler ->
+	r.GET("/flights/:id", GetFlightByIDHandler)
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
