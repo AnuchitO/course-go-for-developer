@@ -7,14 +7,17 @@ import (
 )
 
 func flightHandler(w http.ResponseWriter, r *http.Request) {
-
 	fmt.Println("flightHandler Method: ", r.Method)
+	if r.Method == "GET" {
+		raw := `{
+			"name": "anuchitO",
+			"age": 25
+			}`
+		w.Write([]byte(raw))
+		return
+	}
 
-	raw := `{
-	"name": "anuchitO",
-	"age": 25
-	}`
-	w.Write([]byte(raw))
+	w.WriteHeader(http.StatusMethodNotAllowed)
 }
 
 func main() {
