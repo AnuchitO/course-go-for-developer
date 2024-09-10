@@ -23,9 +23,9 @@ func main() {
 	r := gin.Default()
 
 	r.GET("/ping", flight.Handler)
-	r.GET("/flights", flight.GetAllFlightsHandler)     // SELECT * FROM flights;
-	r.GET("/flights/:id", flight.GetFlightByIDHandler) // SELECT * FROM flights WHERE id = ?;
-	r.POST("/flights", flight.CreateFlightHandler)     // INSERT INTO flights (id, number, airlineCode, destination, arrival) VALUES (?, ?, ?, ?, ?);
+	r.GET("/flights", flight.GetAllHandler)      // SELECT * FROM flights;
+	r.GET("/flights/:id", flight.GetByIDHandler) // SELECT * FROM flights WHERE id = ?;
+	r.POST("/flights", flight.CreateHandler)     // INSERT INTO flights (id, number, airlineCode, destination, arrival) VALUES (?, ?, ?, ?, ?);
 	// POST /flights
 	// POST /flights/:id
 
