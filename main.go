@@ -8,11 +8,9 @@ func sum(a int, b int) int {
 	return a + b
 }
 
-func minus(a int, b int) int {
+func minus(a, b int) int {
 	return a - b
 }
-
-// TODO: create a function calculate that takes a function as an argument (func(int, int) int)
 
 type myFunc func(int, int) int
 
@@ -20,7 +18,20 @@ func calculate(fn myFunc, a int, b int) int {
 	return fn(a, b)
 }
 
+func getUser(name string, age int) (r string, err error) {
+	r = fmt.Sprintf("Name: %s, Age: %d", name, age)
+	return
+}
+
+func swap(a, b int) (int, int) {
+	return b, a
+}
+
 func main() {
+
+	a, b := swap(1, 2)
+	fmt.Println(a, b)
+
 	var fn = func(i1, i2 int) int {
 		return i1 + i2
 	}
