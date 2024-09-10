@@ -1,11 +1,15 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 )
 
 func flightHandler(w http.ResponseWriter, r *http.Request) {
+
+	fmt.Println("flightHandler Method: ", r.Method)
+
 	raw := `{
 	"name": "anuchitO",
 	"age": 25
