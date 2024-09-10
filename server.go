@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/gin-gonic/gin"
@@ -44,7 +45,16 @@ func GetFlightByIDHandler(c *gin.Context) {
 		Destination: "DMK",
 		Arrival:     "KKC",
 	}
-	c.JSON(200, f)
+
+	b, err := json.Marshal(f)
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	c.JSON(200, b)
 }
 
 func main() {
