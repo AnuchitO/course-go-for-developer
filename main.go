@@ -48,7 +48,24 @@ func main() {
 }
 
 /* Java
+-- Flight.java --
+import System.out;
 
+// FD 3567
+public class Flight {
+	private String airlineCode;
+	private String number;
+
+	public Flight() {
+	}
+
+	public String getFlightNumber() {
+		return this.airlineCode + this.number;
+	}
+}
+
+
+--- Hello.java ---
 import System.out;
 
 public class Hello {
