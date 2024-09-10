@@ -49,15 +49,30 @@ func GetFlightByIDHandler(c *gin.Context) {
 		return
 	}
 
-	f := Flight{
-		ID:          id,
-		Number:      3250,
-		AirlineCode: "FD",
-		Destination: "DMK",
-		Arrival:     "KKC",
+	// l := len(flights)
+	// for i := 0; i < l; i++ {
+	// 	f := flights[i]
+	// 	if f.ID == id {
+	// 		c.JSON(200, f)
+	// 		return
+	// 	}
+	// }
+	// for i := range flights {
+	// 	f := flights[i]
+	// 	if f.ID == id {
+	// 		c.JSON(200, f)
+	// 		return
+	// 	}
+	// }
+
+	for _, f := range flights {
+		if f.ID == id {
+			c.JSON(200, f)
+			return
+		}
 	}
 
-	c.JSON(200, f)
+	c.JSON(http.StatusBadRequest, gin.H{"error": "flight ID not found "})
 }
 
 func main() {
