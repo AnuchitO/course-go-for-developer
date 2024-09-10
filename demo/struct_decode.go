@@ -8,7 +8,7 @@ import (
 type Flight struct {
 	ID          int    `json:"id"`
 	Number      int    `json:"number"`
-	AirlineCode string `json:"airline_code"`
+	AirlineCode string `json:"airlineCode"`
 	Destination string `json:"destination"`
 	Arrival     string `json:"arrival"`
 }
@@ -16,7 +16,6 @@ type Flight struct {
 func main() {
 	// using encoding/json
 	// struct -> JSON ([]byte of text)   ==> Marshal (Serialize)
-	// JSON ([]byte of text) -> struct 	 ==> Unmarshal (Deserialize)
 
 	f := Flight{ID: 1, Number: 3250, AirlineCode: "FD", Destination: "DMK", Arrival: "KKC"}
 
@@ -28,4 +27,14 @@ func main() {
 	}
 
 	log.Println(string(b))
+
+	// JSON ([]byte of text) -> struct 	 ==> Unmarshal (Deserialize)
+	raw := `{"id":1,"number":3250,"AirlineCode":"FD","destination":"DMK","arrival":"KKC"}`
+	var f2 Flight
+	err = json.Unmarshal([]byte(raw), &f2)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Printf("%#v\n", f2)
 }
