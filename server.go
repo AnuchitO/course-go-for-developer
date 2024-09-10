@@ -1,8 +1,8 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
+	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -36,25 +36,23 @@ type Flight struct {
 }
 
 func GetFlightByIDHandler(c *gin.Context) {
-	id := c.Param("id")
-	fmt.Println(id)
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "invalid id",
+		})
+		return
+	}
+
 	f := Flight{
-		ID:          1,
+		ID:          id,
 		Number:      3250,
 		AirlineCode: "FD",
 		Destination: "DMK",
 		Arrival:     "KKC",
 	}
 
-	b, err := json.Marshal(f)
-	if err != nil {
-		c.JSON(500, gin.H{
-			"error": err.Error(),
-		})
-		return
-	}
-
-	c.JSON(200, b)
+	c.JSON(200, f)
 }
 
 func main() {
