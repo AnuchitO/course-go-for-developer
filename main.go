@@ -48,6 +48,7 @@ func main() {
 }
 
 /* Java
+
 -- Flight.java --
 import System.out;
 
@@ -56,7 +57,16 @@ public class Flight {
 	private String airlineCode;
 	private String number;
 
-	public Flight() {
+	public static Flight NewAirAsia(String number) {
+		return new Flight("FD", number);
+	}
+
+	private Flight() {
+	}
+
+	private Flight(String airlineCode, String number) {
+		this.airlineCode = airlineCode;
+		this.number = number;
 	}
 
 	public String getFlightNumber() {

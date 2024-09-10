@@ -2,17 +2,17 @@ package main
 
 import "fmt"
 
-func NewFlight(airlineCode string, number int, destination string) Flight {
-	f := Flight{
+// Factory pattern
+func NewAirAsia(number int) flight {
+	f := flight{
 		number:      number,
-		airlineCode: airlineCode,
-		destination: destination,
+		airlineCode: "FD",
 	}
 
 	return f
 }
 
-type Flight struct {
+type flight struct {
 	number      int
 	airlineCode string
 	destination string
