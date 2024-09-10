@@ -14,17 +14,24 @@ func minus(a int, b int) int {
 
 // TODO: create a function calculate that takes a function as an argument (func(int, int) int)
 
+type myFunc func(int, int) int
+
+func calculate(fn myFunc, a int, b int) int {
+	return fn(a, b)
+}
+
 func main() {
-	var fn func(int, int) int
-	fn = sum
-	result := fn(1, 2)
-	fmt.Println(result) // 3
+	var fn = func(i1, i2 int) int {
+		return i1 + i2
+	}
 
-	result = calculate(sum, 1, 2)
-	fmt.Println(result) // 3
+	fmt.Println(fn(1, 2))
 
-	result = calculate(minus, 1, 2)
-	fmt.Println(result) // 3
+	r1 := calculate(sum, 1, 2)
+	fmt.Println(r1) // 3
+
+	r2 := calculate(minus, 1, 2)
+	fmt.Println(r2) // -1
 
 	fmt.Println("Hello, World!")
 }
