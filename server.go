@@ -90,10 +90,15 @@ func CreateFlightHandler(c *gin.Context) {
 	c.JSON(http.StatusCreated, f)
 }
 
+func GetAllFlightsHandler(c *gin.Context) {
+	c.JSON(200, flights)
+}
+
 func main() {
 	r := gin.Default()
 
 	r.GET("/ping", handler)
+	r.GET("/flights", GetAllFlightsHandler)
 	r.GET("/flights/:id", GetFlightByIDHandler)
 	r.POST("/flights", CreateFlightHandler)
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
